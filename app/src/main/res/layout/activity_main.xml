@@ -9,10 +9,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
     <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/question_string"
-      android:padding="24dp"
+        android:id="@+id/question_text_view"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/question_australia"
+        android:padding="24dp"
     />
 
     <LinearLayout
@@ -34,4 +36,10 @@
             tools:ignore="ButtonStyle" />
 
 </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/next_button"
+        android:text="@string/next_button"
+        />
 </LinearLayout>
