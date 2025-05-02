@@ -17,5 +17,7 @@
     <string name="question_china"> China only has one time zone. </string>
     <string name="question_paris"> Paris is further north than Toronto. </string>
     <string name="question_africa_land"> Africa is bigger than Russia by land area. </string>
+    <string name="result_string">Количество правильных ответов = 0</string>
+    <string name="dialog_button">OK</string>
 
 </resources>
