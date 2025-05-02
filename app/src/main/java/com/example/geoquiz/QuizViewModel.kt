@@ -3,7 +3,7 @@ package com.example.geoquiz
 import androidx.lifecycle.ViewModel
 
 @Suppress("unused")
-const val TAG: String = "QuizViewModel"
+private const val TAG: String = "QuizViewModel"
 
 class QuizViewModel : ViewModel() {
     var currentIndex = 0
