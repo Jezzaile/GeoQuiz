@@ -67,6 +67,8 @@ class MainActivity : AppCompatActivity() {
     private fun updateQuestion(){
         val questionTextResId = quizViewModel.currenQuestionText
         questionTextView.setText(questionTextResId)
+        trueButton.visibility = View.VISIBLE
+        falseButton.visibility = View.VISIBLE
     }
     private fun checkAnswer(userAnswer: Boolean){
         val correctAnswer = quizViewModel.currentQuestionAnswer
@@ -77,5 +79,7 @@ class MainActivity : AppCompatActivity() {
             R.string.false_toast
         }
         Toast.makeText(this,messageResId,Toast.LENGTH_SHORT).show()
+        trueButton.visibility = View.INVISIBLE
+        falseButton.visibility = View.INVISIBLE
     }
 }
