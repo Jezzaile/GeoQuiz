@@ -1,7 +1,6 @@
 package com.example.geoquiz
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -17,22 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var falseButton: Button
     private  lateinit var nextButton: Button
     private lateinit var prevButton: Button
-    private  val questionBank = listOf(
-        Question(R.string.question_australia,true),
-        Question(R.string.question_oceans,true),
-        Question(R.string.question_mideast,false),
-        Question(R.string.question_africa,false),
-        Question(R.string.question_americas,true),
-        Question(R.string.question_asia,true),
-        Question(R.string.question_mexico,false),
-        Question(R.string.question_zealand,true),
-        Question(R.string.question_china,true),
-        Question(R.string.question_paris,true),
-        Question(R.string.question_africa_land,true)
-    )
-    private var currentIndex = 0
     private lateinit var questionTextView: TextView
-
+    private val quizViewModel : QuizViewModel by lazy { ViewModelProvider(this)[QuizViewModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +28,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val quizViewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
-        Log.d(TAG,"Got a QuizViewModel: $quizViewModel")
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
         nextButton = findViewById(R.id.next_button)
@@ -58,25 +41,22 @@ class MainActivity : AppCompatActivity() {
             checkAnswer(false)
         }
         nextButton.setOnClickListener { view: View ->
-            currentIndex = (currentIndex + 1) % questionBank.size
+            quizViewModel.moveToNext()
             updateQuestion()
         }
         prevButton.setOnClickListener{view: View ->
-            currentIndex = currentIndex - 1
-            if (currentIndex < 0){
-                currentIndex = questionBank.size - 1
-            }
+            quizViewModel.moveToPrev()
             updateQuestion()
         }
         updateQuestion()
     }
 
     private fun updateQuestion(){
-        val questionTextResId = questionBank[currentIndex].TextResId
+        val questionTextResId = quizViewModel.currenQuestionText
         questionTextView.setText(questionTextResId)
     }
     private fun checkAnswer(userAnswer: Boolean){
-        val correctAnswer = questionBank[currentIndex].Answer
+        val correctAnswer = quizViewModel.currentQuestionAnswer
         val messageResId = if(userAnswer == correctAnswer){
             R.string.correct_toast
         }else
