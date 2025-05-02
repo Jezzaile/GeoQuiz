@@ -32,11 +32,4 @@ class QuizViewModel : ViewModel() {
     fun moveToNext (){
         currentIndex = (currentIndex + 1) % questionBank.size
     }
-    fun moveToPrev(){
-        currentIndex -= 1
-        if (currentIndex < 0) {
-            currentIndex = questionBank.size - 1
-        }
-    }
-
 }
