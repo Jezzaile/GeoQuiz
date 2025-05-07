@@ -19,5 +19,9 @@
     <string name="question_africa_land"> Africa is bigger than Russia by land area. </string>
     <string name="result_string">Количество правильных ответов = 0</string>
     <string name="dialog_button">OK</string>
+    <string name="warning_text">Вы уверены что хотите использовать подсказку?</string>
+    <string name="show_answer_button">Показать ответ</string>
+    <string name="cheat_button">Читер!</string>
+    <string name="judgment_toast">Обманывать нехорошо</string>
 
 </resources>
