@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isInvisible
-import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "MainActivity"
@@ -59,7 +58,8 @@ class MainActivity : AppCompatActivity() {
             updateQuestion()
         }
         cheatButton.setOnClickListener{
-            val intent =  Intent(this, CheatActivity::class.java)
+            val answerIsTrue = quizViewModel.currentQuestionAnswer
+            val intent =  CheatActivity.newIntent(this@MainActivity, answerIsTrue)
             startActivity(intent)
 
         }
