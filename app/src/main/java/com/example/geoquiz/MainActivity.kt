@@ -12,11 +12,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isInvisible
 import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "MainActivity"
 private  const val KEY_INDEX = "index"
 private  const val ANSWER_INDEX = "answers"
+private const val BUTTON_STATE = "buttons"
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var trueButton: Button
@@ -28,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val currentIndex =  savedInstanceState?.getInt(KEY_INDEX) ?:0
+        val buttonState = savedInstanceState?.getBoolean(BUTTON_STATE) ?: false
         quizViewModel.currentIndex = currentIndex
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -52,6 +56,11 @@ class MainActivity : AppCompatActivity() {
             updateQuestion()
         }
         updateQuestion()
+        if (buttonState)
+        {
+            trueButton.visibility = View.INVISIBLE
+            falseButton.visibility = View.INVISIBLE
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -59,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "Saved instance")
         outState.putInt(KEY_INDEX, quizViewModel.currentIndex)
         outState.putInt(ANSWER_INDEX, quizViewModel.numberOfCorrectAnswers)
+        outState.putBoolean(BUTTON_STATE, trueButton.isInvisible)
 
     }
 
