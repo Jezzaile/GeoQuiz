@@ -23,5 +23,6 @@
     <string name="show_answer_button">Показать ответ</string>
     <string name="cheat_button">Чит</string>
     <string name="judgment_toast">Обманывать нехорошо</string>
+    <string name="api_level">API Level %d</string>
 
 </resources>
