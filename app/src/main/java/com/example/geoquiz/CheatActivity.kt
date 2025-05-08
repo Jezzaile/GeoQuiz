@@ -8,7 +8,9 @@ import android.content.Intent
 import android.widget.Button
 import android.widget.TextView
 
+
 private const val EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true"
+private const val EXTRA_ANSWER_SHOWN = 300
 class CheatActivity : AppCompatActivity() {
     private var answerIsTrue = false
     private lateinit var answerTextView: TextView
@@ -26,7 +28,9 @@ class CheatActivity : AppCompatActivity() {
                 answerIsTrue -> R.string.true_button
                 else -> R.string.false_button
             }
+
             answerTextView.setText(answerText)
+            setResult(EXTRA_ANSWER_SHOWN, intent)
         }
     }
 
