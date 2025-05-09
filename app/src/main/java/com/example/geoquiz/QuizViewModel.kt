@@ -9,6 +9,7 @@ class QuizViewModel : ViewModel() {
     var currentIndex = 0
     var isCheat = false
     var numberOfCorrectAnswers: Int = 0
+    var numberOfCheatsLeft = 3
     val questionBank = listOf(
         Question(R.string.question_australia,true),
         Question(R.string.question_oceans,true),
@@ -33,7 +34,13 @@ class QuizViewModel : ViewModel() {
         }
 
 
-
+    fun useCheat(){
+        numberOfCheatsLeft -= 1
+        if (numberOfCheatsLeft <  0)
+        {
+            isCheat = true
+        }
+    }
     fun moveToNext (){
         currentIndex = (currentIndex + 1) % questionBank.size
     }

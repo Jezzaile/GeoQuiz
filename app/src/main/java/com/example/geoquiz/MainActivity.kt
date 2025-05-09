@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private val getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         val isCheat = it.resultCode
         if (isCheat == EXTRA_ANSWER_SHOWN) {
-            quizViewModel.isCheat = true
+            quizViewModel.useCheat()
         }
     }
 
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         }
         cheatButton.setOnClickListener{
             val answerIsTrue = quizViewModel.currentQuestionAnswer
-            val intent =  CheatActivity.newIntent(this@MainActivity, answerIsTrue)
+            val intent =  CheatActivity.newIntent(this@MainActivity, answerIsTrue, quizViewModel.numberOfCheatsLeft)
             getResult.launch(intent)
             //startActivityForResult(intent, REQUEST_CODE_CHEAT)
 
